@@ -1,5 +1,4 @@
 import psycopg
-from pathlib import Path
 from analytics.db import database_url
 from analytics.paths import PROJECT_ROOT, RAW_OLIST
 
@@ -17,9 +16,9 @@ FILES = {
 
 
 def main():
-    create_tables = (
-        Path(__file__).resolve().parent.parent.parent / "sql" / "create_tables.sql"
-    ).read_text(encoding="utf-8")
+    create_tables = (PROJECT_ROOT / "sql" / "create_tables.sql").read_text(
+        encoding="utf-8"
+    )
     with psycopg.connect(database_url()) as conn:
         conn.execute(create_tables)
         for table, file_name in FILES.items():

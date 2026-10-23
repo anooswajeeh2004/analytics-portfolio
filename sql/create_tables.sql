@@ -32,8 +32,8 @@ CREATE TABLE customers (
 DROP TABLE IF EXISTS geolocation;
 CREATE TABLE geolocation (
   geolocation_zip_code_prefix text,
-  geolocation_lat numeric,
-  geolocation_lng numeric,
+  geolocation_lat double precision,
+  geolocation_lng double precision,
   geolocation_city text,
   geolocation_state text
 );
