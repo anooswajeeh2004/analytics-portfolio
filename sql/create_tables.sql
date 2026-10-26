@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS orders CASCADE;
 CREATE TABLE orders (
   order_id text,
   customer_id text,
@@ -9,7 +9,7 @@ CREATE TABLE orders (
   order_delivered_customer_date timestamp,
   order_estimated_delivery_date timestamp
 );
-DROP TABLE IF EXISTS order_items;
+DROP TABLE IF EXISTS order_items CASCADE;
 CREATE TABLE order_items (
   order_id text,
   order_item_id integer,
@@ -20,7 +20,7 @@ CREATE TABLE order_items (
   freight_value numeric(10, 2)
 );
 -- 3. customers
-DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS customers CASCADE;
 CREATE TABLE customers (
   customer_id text,
   customer_unique_id text,
@@ -29,7 +29,7 @@ CREATE TABLE customers (
   customer_state text
 );
 -- 4. geolocation
-DROP TABLE IF EXISTS geolocation;
+DROP TABLE IF EXISTS geolocation CASCADE;
 CREATE TABLE geolocation (
   geolocation_zip_code_prefix text,
   geolocation_lat double precision,
@@ -38,7 +38,7 @@ CREATE TABLE geolocation (
   geolocation_state text
 );
 -- 5. order_payments
-DROP TABLE IF EXISTS order_payments;
+DROP TABLE IF EXISTS order_payments CASCADE;
 CREATE TABLE order_payments (
   order_id text,
   payment_sequential integer,
@@ -47,7 +47,7 @@ CREATE TABLE order_payments (
   payment_value numeric(10, 2)
 );
 -- 6. order_reviews
-DROP TABLE IF EXISTS order_reviews;
+DROP TABLE IF EXISTS order_reviews CASCADE;
 CREATE TABLE order_reviews (
   review_id text,
   order_id text,
@@ -58,7 +58,7 @@ CREATE TABLE order_reviews (
   review_answer_timestamp timestamp
 );
 -- 7. products
-DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS products CASCADE;
 CREATE TABLE products (
   product_id text,
   product_category_name text,
@@ -71,7 +71,7 @@ CREATE TABLE products (
   product_width_cm integer
 );
 -- 8. sellers
-DROP TABLE IF EXISTS sellers;
+DROP TABLE IF EXISTS sellers CASCADE;
 CREATE TABLE sellers (
   seller_id text,
   seller_zip_code_prefix text,
@@ -79,7 +79,7 @@ CREATE TABLE sellers (
   seller_state text
 );
 -- 9. category_translation
-DROP TABLE IF EXISTS category_translation;
+DROP TABLE IF EXISTS category_translation CASCADE;
 CREATE TABLE category_translation (
   product_category_name text,
   product_category_name_english text

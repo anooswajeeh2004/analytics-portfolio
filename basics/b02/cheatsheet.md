@@ -32,4 +32,4 @@ git clone https://github.com/anooswajeeh2004/analytics-portfolio.git portfolio-c
 ls -a portfolio-check
 
 one mistake:
-i have problrm with athurazation in git have and i fix it
+I have problrm with athurazation in git have and i fix it
