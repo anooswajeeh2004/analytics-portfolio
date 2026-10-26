@@ -30,6 +30,10 @@ def main():
                         copy.write(chunk)
             rows = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
             print(f"{table:<22} {rows:>10}")
+        conn.execute(
+            (PROJECT_ROOT / "sql" / "constraints.sql").read_text(encoding="utf-8")
+        )
+        print("constraints added")
 
 
 if __name__ == "__main__":

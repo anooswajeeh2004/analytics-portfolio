@@ -20,3 +20,8 @@ def get_engine():
 
 def query(sql):
     return pd.read_sql(text(sql), get_engine())
+
+
+def execute(sql):
+    with get_engine().begin() as connection:
+        connection.execute(text(sql))
