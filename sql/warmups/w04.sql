@@ -8,3 +8,5 @@ SELECT
   ) AS pct_5_star_reviews
 FROM
   order_reviews;
+-- Result:
+-- 57.7
