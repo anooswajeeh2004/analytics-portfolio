@@ -6,16 +6,16 @@ This document outlines the core tables, primary keys, composite keys, and relati
 
 ```mermaid
 erDiagram
-    customers ||--o{ orders : "places"
+    customers ||--|| orders : "places"
     orders ||--o{ order_items : "contains"
-    products ||--o{ order_items : "appears in"
-    sellers ||--o{ order_items : "fulfills"
+    products ||--|{ order_items : "appears in"
+    sellers ||--|{ order_items : "fulfills"
     orders ||--o{ order_payments : "has"
     orders ||--o{ order_reviews : "receives"
-    category_translation ||--o{ products : "categorizes"
-    geolocation ||--o{ customers : "located at"
-    geolocation ||--o{ sellers : "located at"
+    category_translation |o--o{ products : "categorizes"
 ```
+
+Note on Geolocation: The geolocation table has no primary key. Postal codes span multiple coordinate points and states, resulting in a many-to-many relationship rather than a direct foreign key lookup
 
 ## 2. Core Tables & Primary Keys
 
