@@ -1,11 +1,27 @@
-# Data Dictionary Notes
+# Olist Data Dictionary
 
-## Table: order_items
+This document provides a comprehensive dictionary of all tables, columns, data types, descriptions, and analytical notes for the Olist e-commerce dataset.
 
-- `price`: Represents the item sale price in BRL. Note: `price` does NOT include freight charges (`freight_value`).
-
-## Table: order_payments
-
-- `payment_value`: Total cash/value transferred for the order, which includes both item prices and freight costs.
-- **Anomalies Note:** Some canceled orders may have payment entries without matching item entries in `order_items`.
-- **Vouchers Note:** Vouchers act as a payment mechanism and do not alter the base product price in `order_items`.
+| Table Name               | Column Name                     | Data Type | Description                                     | Notes                                                                                                                       |
+| :----------------------- | :------------------------------ | :-------- | :---------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| **orders**               | `order_id`                      | text      | Unique identifier of the order.                 | **Primary Key.** 99,441 rows, verified unique.                                                                              |
+| **orders**               | `customer_id`                   | text      | Key to the customer table.                      | Links to `customer_id` in customers table.                                                                                  |
+| **orders**               | `order_status`                  | text      | Status of the order (delivered, shipped, etc.). | Useful for filtering active vs completed orders.                                                                            |
+| **orders**               | `order_purchase_timestamp`      | timestamp | Time the order was purchased.                   | All times are in São Paulo local time. Verified because 666 orders came from 03:00 to 06:00, and 4,700 from 06:00 to 09:00. |
+| **orders**               | `order_estimated_delivery_date` | timestamp | Estimated delivery date for the order.          | It is a date. Compare it only with dates[cite: 7].                                                                          |
+| **customers**            | `customer_id`                   | text      | Key to the order instance.                      | **Primary Key.** Each customer_id represents a unique order instance.                                                       |
+| **customers**            | `customer_unique_id`            | text      | Actual unique customer identifier.              | Used to track repeat buyers across multiple orders.                                                                         |
+| **order_items**          | `order_id`                      | text      | Order identifier.                               | **Composite Primary Key part 1.** Links to orders table.                                                                    |
+| **order_items**          | `order_item_id`                 | integer   | Sequential number of item in order.             | **Composite Primary Key part 2.** Together with order_id forms the PK.                                                      |
+| **order_items**          | `product_id`                    | text      | Product identifier.                             | Foreign key to products table.                                                                                              |
+| **order_items**          | `seller_id`                     | text      | Seller identifier.                              | Foreign key to sellers table.                                                                                               |
+| **order_payments**       | `order_id`                      | text      | Order identifier.                               | **Composite Primary Key part 1.** Links to orders.                                                                          |
+| **order_payments**       | `payment_sequential`            | integer   | Sequence of payment installments.               | **Composite Primary Key part 2.**                                                                                           |
+| **order_payments**       | `payment_type`                  | text      | Method of payment (credit_card, boleto, etc.).  | Used for payment distribution analysis.                                                                                     |
+| **order_reviews**        | `review_id`                     | text      | Review identifier.                              | **Composite Primary Key part 1.** Note: review_ids can repeat across orders.                                                |
+| **order_reviews**        | `order_id`                      | text      | Order identifier.                               | **Composite Primary Key part 2.**                                                                                           |
+| **products**             | `product_id`                    | text      | Unique product identifier.                      | **Primary Key.** 32,951 rows, zero orphans found.                                                                           |
+| **products**             | `product_category_name`         | text      | Category name in Portuguese.                    | Links to category translation table.                                                                                        |
+| **sellers**              | `seller_id`                     | text      | Unique seller identifier.                       | **Primary Key.** 3,095 rows, zero orphans found.                                                                            |
+| **category_translation** | `product_category_name`         | text      | Category name in Portuguese.                    | **Primary Key.** Translates categories to English.                                                                          |
+| **geolocation**          | `geolocation_zip_code_prefix`   | text      | Zip code prefix.                                | **No Primary Key.** Spans multiple coordinates and states (many-to-many).                                                   |

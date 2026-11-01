@@ -31,7 +31,7 @@ A structured analytics environment and data ingestion pipeline for the Olist E-c
 
    Keep `.env` private and ensure it is excluded from Git through `.gitignore`.
 
-4. Download the Olist dataset from Kaggle, extract the files, and place the CSV files inside:
+4. Download the Olist dataset from [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), extract the files, and place the CSV files inside:
 
    ```text
    data/raw/olist/

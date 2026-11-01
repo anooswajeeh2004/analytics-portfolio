@@ -11,3 +11,9 @@ ORDER BY
   product_count DESC
 LIMIT
   5
+  -- Result:
+  -- bed_bath_table   | 3029
+  -- sports_leisure   | 2867
+  -- furniture_decor  | 2657
+  -- health_beauty    | 2444
+  -- housewares       | 2335

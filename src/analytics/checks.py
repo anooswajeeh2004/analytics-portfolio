@@ -4,7 +4,7 @@ from analytics.load_olist import FILES
 
 
 def table_row_counts() -> pd.DataFrame:
-    """إرجاع عدد الصفوف لكل جدول في قاعدة البيانات في شكل DataFrame"""
+    """Return the number of rows for each table in the database as a DataFrame."""
     results = []
     for table_name in FILES.keys():
         df = query(f"SELECT COUNT(*) as row_count FROM {table_name}")

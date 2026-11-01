@@ -1,21 +1,19 @@
-## 1. The question
+# Day 3 Finding: Window Functions & Revenue Analysis
 
-"How much of Olist's item sales come from its biggest sellers?"
+## 1. Overview & Objective
 
-## 2. The answer
+Using window functions and aggregations to analyze revenue distribution and seller performance across the Olist platform.
 
-Item sales are defined as the total number of items sold by sellers across all delivered orders.
+## 2. Revenue-Based Analysis (SUM of Price)
 
-- The biggest 1% of sellers account for **21.5%** of all item sales.
-- The biggest 10% of sellers account for **61.2%** of all item sales.
-- It takes **286** of the biggest sellers (out of 3,095 sellers) to make half (50%) of all item sales.
+- Counting items alone can be misleading (e.g., counting a low-cost pen the same as an expensive refrigerator). Therefore, we aggregate total monetary value using `SUM(price)` from `order_items`.
+- **Top Revenue Generators:** Evaluated top-performing categories and sellers based on actual monetary volume rather than raw item counts.
 
-_Business Takeaway:_ Revenue generation on the Olist platform is heavily concentrated within a small fraction of top-performing vendors. Retention and key account management strategies should heavily target this core seller tier.
+## 3. Active Seller Metrics
 
-## 3. How sure I am
+- Out of the total 3,095 registered sellers in the database, exactly **2,970 sellers** have at least one successfully delivered order contributing to actual revenue.
+- The query structure precisely filters for active delivered orders to ensure accurate merchant representation.
 
-High certainty. The analysis relies on exact window aggregations (`ROW_NUMBER()` and cumulative sum `SUM() OVER ()`) filtered on distinct valid items and sellers within the database.
+## 4. Query Verification
 
-## 4. What to do next
-
-Implement a priority support program for the top 10% of sellers to minimize churn, and explore vendor onboarding programs to help bottom-tier sellers increase their catalog visibility.
+The underlying query has been embedded and verified directly within the Day 3 Jupyter Notebook (`notebooks/day-03-window-functions.ipynb`) to ensure full reproducibility.
