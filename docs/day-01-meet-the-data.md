@@ -4,7 +4,7 @@
 | :--------------------- | :----------------------------- | :----------------------------------------------------------------- |
 | `orders`               | order                          | `order_id`                                                         |
 | `customers`            | customer                       | `customer_id`                                                      |
-| `order_items`          | item                           | `order_id`, `order_item_id`                                        |
+| `order_items`          | item                           | `order_item_id`                                                    |
 | `order_payments`       |                                |                                                                    |
 | `order_reviews`        |                                |                                                                    |
 | `products`             |                                |                                                                    |

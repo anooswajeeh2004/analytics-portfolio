@@ -24,21 +24,21 @@ Way 3 (by payment type): R$ 884657.4
 
 from way 1 to way 2
 
-| Step                                        | Orders | Amount (R$)  | Total so far (R$) |
-| ------------------------------------------- | ------ | ------------ | ----------------- |
-| Way 1: the item prices                      | 38,477 | 854,686.33   | 854,686.33        |
-| + the freight of those items                | 38,477 | 138,443.43   | 993,129.76        |
-| + the payments of orders that have no items | 3      | 350.24       | 993,480.00        |
-| + the small differences inside orders       | 36,120 | 45,220.00    | 1,038,700.00      |
-| = Way 2: the payments                       | 38,480 | 1,038,700.00 | 1,038,700.00      |
+| Step                                                 | Orders         | Amount (R$)         | Total so far (R$)     |
+| ---------------------------------------------------- | -------------- | ------------------- | --------------------- |
+| Way 1: the item prices                               | 6,452          | 854,686.33[cite: 8] | 854,686.33[cite: 8]   |
+| + the freight of those items[cite: 8]                | 6,452[cite: 8] | 148,622.14[cite: 8] | 1,003,308.47[cite: 8] |
+| + the payments of orders that have no items[cite: 8] | 60[cite: 8]    | 19,194.21[cite: 8]  | 1,022,502.68[cite: 8] |
+| + the small differences inside orders[cite: 8]       | 59[cite: 8]    | −77.36[cite: 8]     | 1,022,425.32[cite: 8] |
+| = Way 2: the payments[cite: 8]                       | 6,512[cite: 8] |                     | 1,022,425.32[cite: 8] |
 
 from way 1 to way 3
 
-| Step                                     | Orders | Amount (R$)  | Total so far (R$) |
-| ---------------------------------------- | ------ | ------------ | ----------------- |
-| Way 1: the item prices                   | 38,477 | 854,686.33   | 854,686.33        |
-| + item prices that the join counts again | 4,210  | 149,813.67   | 1,004,500.00      |
-| = Way 3                                  | 38,477 | 1,004,500.00 | 1,004,500.00      |
+| Step                                              | Orders         | Amount (R$)         | Total so far (R$)   |
+| ------------------------------------------------- | -------------- | ------------------- | ------------------- |
+| Way 1: the item prices[cite: 8]                   | 6,452[cite: 8] | 854,686.33[cite: 8] | 854,686.33[cite: 8] |
+| + item prices that the join counts again[cite: 8] | 139[cite: 8]   | 29,971.07[cite: 8]  | 884,657.40[cite: 8] |
+| = Way 3[cite: 8]                                  |                |                     | 884,657.40[cite: 8] |
 
 ## Part 5
 
@@ -70,12 +70,22 @@ from way 1 to way 3
 
 | Definition / Choice Combination                                       | Revenue (R$)   |
 | --------------------------------------------------------------------- | -------------- |
-| **Official Definition** (Item prices, excluding canceled/unavailable) | **844,120.15** |
-| Alternative A (Including freight value)                               | 981,040.80     |
-| Alternative B (Delivered orders only)                                 | 833,520.10     |
+| **Official Definition** (Item prices, excluding canceled/unavailable) | **848,860.10** |
+| Alternative A (Including freight value)                               | 996,973.51     |
+| Alternative B (Delivered orders only)                                 | 838,576.64     |
 
 ---
 
 ### One-Sentence Official Definition
 
 > **Official Definition:** Revenue is defined as the sum of `order_items.price` for all orders placed in August 2018 based on `orders.order_purchase_timestamp` in Sao Paulo time (`America/Sao_Paulo`), excluding orders with status `canceled` or `unavailable`.
+
+## Errors Encountered & Lessons Learned
+
+1. **The `COALESCE` Trap in Bridge 1 (Bug 2):**
+   - **Error:** Using `COALESCE(total_price, 0)` turned missing item prices into 0, which caused orders with no items to have their full payment amount counted twice (once in the no-items count and once inside `small_differences`).
+   - **What it taught me:** Never apply `COALESCE(x, 0)` blindly without verifying which rows are empty and whether 0 is a valid representation. Letting empty values stay as `NULL` allows aggregate functions like `SUM` to correctly ignore them.
+
+2. **The Multi-Payment Join Inflation in Bridge 2 (Bug 3):**
+   - **Error:** A direct `JOIN` between items and payments duplicated item rows for every extra payment row an order had, leading to an uncounted product price inflation (missing R$ 6,741.82).
+   - **What it taught me:** Always follow Day 2's law: count the rows after every join. If row counts exceed expectations, inspect an order with multiple payment rows to uncover cartesian expansion multipliers before finalizing reconciliations.

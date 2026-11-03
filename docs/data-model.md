@@ -47,7 +47,7 @@ Note on Geolocation: The geolocation table has no primary key. Postal codes span
   - **Primary Key:** `seller_id`
   - **Description:** Information regarding merchants and sellers fulfilling order items.
 
-- **`product_category_name_translation`**
+- **`category_translation`**
   - **Primary Key:** `product_category_name`
   - **Description:** Translates Portuguese product categories into English.
 
