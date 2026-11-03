@@ -1,46 +1,27 @@
+import pandas as pd
 from analytics.db import query
 
 
-def profile_table(table_name: str):
-    """
-    Profiles a given Olist table by returning its total row count
-    and column information.
-    """
-    # 1. Get total rows
-    row_count_df = query(f"SELECT COUNT(*) AS total_rows FROM {table_name};")
-    total_rows = row_count_df["total_rows"].iloc[0]
-
-    # 2. Get table columns info
-    columns_df = query(f"""
-        SELECT column_name, data_type 
-        FROM information_schema.columns 
-        WHERE table_name = '{table_name}';
+def profile_table(table_name: str) -> pd.DataFrame:
+    """Return one row for each column of the table, with its type, nulls, null_pct, distinct, min and max."""
+    columns = query(f"""
+        SELECT column_name, data_type
+        FROM information_schema.columns
+        WHERE table_name = '{table_name}'
+        ORDER BY ordinal_position
     """)
 
-    print(f"\n==============================")
-    print(f" TABLE PROFILE: {table_name.upper()}")
-    print(f"==============================")
-    print(f"Total Rows: {total_rows}")
-    print(f"Total Columns: {len(columns_df)}")
-    print("\nColumns & Types:")
-    print(columns_df.to_string(index=False))
-    print(f"==============================\n")
+    rows = []
+    for column, data_type in zip(columns["column_name"], columns["data_type"]):
+        stats = query(f"""
+            SELECT
+                COUNT(*) - COUNT({column}) AS nulls,
+                ROUND(100.0 * (COUNT(*) - COUNT({column})) / COUNT(*), 1) AS null_pct,
+                COUNT(DISTINCT {column}) AS "distinct",
+                MIN({column})::text AS min,
+                MAX({column})::text AS max
+            FROM {table_name}
+        """)
+        rows.append({"column": column, "type": data_type, **stats.iloc[0].to_dict()})
 
-    return total_rows
-
-
-if __name__ == "__main__":
-    tables = [
-        "orders",
-        "customers",
-        "order_items",
-        "order_payments",
-        "order_reviews",
-        "products",
-        "sellers",
-        "category_translation",
-        "geolocation",
-    ]
-
-    for t in tables:
-        profile_table(t)
+    return pd.DataFrame(rows)

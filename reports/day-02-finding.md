@@ -11,8 +11,8 @@ Exploring advanced aggregation, filtering, and time-zone conversions on the Olis
 
 ## 3. Comparing Timestamp Variations (8.11% and 7.87%)
 
-- **8.11% Rate:** Calculated using precise timestamp comparisons (`order_delivered_customer_date > order_estimated_delivery_date`), where any fraction of a second past the deadline flags the order as late.
-- **7.87% Rate:** Reflects alternative condition filtering or specific case-handling logic in the query structure.
+- **8.11% Rate:** Calculated using precise timestamp comparisons (`order_deli vered_customer_date > order_estimated_delivery_date`), where any fraction of a second past the deadline flags the order as late.
+- **7.87% Rate:** The difference in late percentages arises because AVG ignores NULL values (when CASE lacks an ELSE), dividing only by orders that arrived, whereas using ELSE 0.0 includes all orders in the denominator.
 - **Key Takeaway:** The difference between these rates highlights how precise timestamp evaluation versus date-only truncation affects operational performance reporting.
 
 ## 4. Conclusion & Lessons Learned

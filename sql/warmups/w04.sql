@@ -9,4 +9,4 @@ SELECT
 FROM
   order_reviews;
 -- Result:
--- 57.7
+-- 57.8
