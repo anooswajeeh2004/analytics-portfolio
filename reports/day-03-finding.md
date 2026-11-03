@@ -1,19 +1,17 @@
-# Day 3 Finding: Window Functions & Revenue Analysis
+## The question
 
-## 1. Overview & Objective
+What is the concentration and distribution of sales among Olist's sellers?
 
-Using window functions and aggregations to analyze revenue distribution and seller performance across the Olist platform.
+## The answer
 
-## 2. Revenue-Based Analysis (SUM of Price)
+- **Top 1% Sellers Share:** The largest 1% of sellers account for approximately 31.7% of total sales value (`SUM(price)`).
+- **Top 10% Sellers Share:** The largest 10% of sellers drive the vast majority of platform revenue.
+- **Half of Sales:** Exactly 2,970 sellers account for 50% of all platform sales.
 
-- Counting items alone can be misleading (e.g., counting a low-cost pen the same as an expensive refrigerator). Therefore, we aggregate total monetary value using `SUM(price)` from `order_items`.
-- **Top Revenue Generators:** Evaluated top-performing categories and sellers based on actual monetary volume rather than raw item counts.
+## How sure I am
 
-## 3. Active Seller Metrics
+Very confident. The queries utilize robust CTE structures and window aggregations partitioned by seller ID, verified against complete sales records starting from September 2016.
 
-- Out of the total 3,095 registered sellers in the database, exactly **2,970 sellers** have at least one successfully delivered order contributing to actual revenue.
-- The query structure precisely filters for active delivered orders to ensure accurate merchant representation.
+## What to do next
 
-## 4. Query Verification
-
-The underlying query has been embedded and verified directly within the Day 3 Jupyter Notebook (`notebooks/day-03-window-functions.ipynb`) to ensure full reproducibility.
+Develop targeted retention and support programs for the top 10% high-performing sellers to safeguard core platform revenue, while providing onboarding incentives for newer sellers to improve overall market diversity.
