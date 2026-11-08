@@ -1,20 +1,19 @@
 # Day 2 Finding: Advanced SQL & Delivery Performance Analysis
 
-## 1. Overview & Objectives
+## The question
 
-Exploring advanced aggregation, filtering, and time-zone conversions on the Olist e-commerce dataset to evaluate delivery performance and temporal trends.
+What is the true late delivery rate for Olist orders, and how do timestamp precision, date truncation, and NULL handling affect this performance metric?[cite: 8, 12]
 
-## 2. On-Time vs. Late Delivery Analysis (6.77%)
+## The answer
 
-- **Counted Metric:** Evaluated delivered orders strictly on a calendar-date basis (`order_delivered_customer_date::date > order_estimated_delivery_date::date`).
-- **Result:** Yields a late delivery rate of **6.77%**.
+The standard date-truncated late delivery rate is **6.77%** when comparing calendar dates (`order_delivered_customer_date::date > order_estimated_delivery_date::date`)[cite: 12].
 
-## 3. Comparing Timestamp Variations (8.11% and 7.87%)
+Using exact timestamp comparison increases the reported late rate to **8.11%** because any fraction of a second past the estimated delivery threshold flags the order as late[cite: 12]. Furthermore, evaluating average late delivery rates with `CASE` logic without an `ELSE 0.0` clause yields **7.87%** because SQL `AVG()` ignores `NULL` values, altering the denominator[cite: 12].
 
-- **8.11% Rate:** Calculated using precise timestamp comparisons (`order_deli vered_customer_date > order_estimated_delivery_date`), where any fraction of a second past the deadline flags the order as late.
-- **7.87% Rate:** The difference in late percentages arises because AVG ignores NULL values (when CASE lacks an ELSE), dividing only by orders that arrived, whereas using ELSE 0.0 includes all orders in the denominator.
-- **Key Takeaway:** The difference between these rates highlights how precise timestamp evaluation versus date-only truncation affects operational performance reporting.
+## How sure I am
 
-## 4. Conclusion & Lessons Learned
+I am completely confident in these figures as they are derived directly from SQL window functions and exact temporal comparisons across the full Olist database[cite: 12]. The variance between 6.77%, 7.87%, and 8.11% clearly illustrates how aggregation methodology and time granularity alter analytical findings[cite: 12].
 
-Handling temporal data requires careful consideration of time zones (São Paulo vs. UTC) and explicit distinction between timestamps and dates to avoid discrepancies in business metrics.
+## What to do next
+
+Align with operational and logistics stakeholders to standardize the official metric definition (whether to use date-truncation or exact timestamps, and how to handle non-delivered orders in the denominator) to ensure consistent performance reporting across departments[cite: 12].

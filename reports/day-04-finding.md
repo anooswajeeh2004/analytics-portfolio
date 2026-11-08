@@ -42,7 +42,7 @@ Olist's official net revenue for August 2018 is **R$ 848,860.10**.
 
 ## How sure I am
 
-100% confident. After identifying and resolving the calculation errors in the reconciliation bridges (removing improper `COALESCE` handling on missing items and factoring in exact multi-payment row multipliers), every cent between item merchandise values, freight costs, unlinked order payments, and overall payment flows reconciles to the exact cent without any remaining discrepancies.
+High confidence in the reconciliation models; however, system retro-adjustments to shipping freight or post-fulfillment payment chargebacks could alter these exact revenue figures.
 
 ## What to do next
 
