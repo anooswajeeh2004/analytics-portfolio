@@ -16,10 +16,15 @@ ORDER BY
   seller_state ASC
 LIMIT
   10;
---  Results:
---	sao paulo	SP	694
---	curitiba	PR	124
---	rio de janeiro	RJ	93
---	belo horizonte	MG	66
---	ribeirao preto	SP	52
---	guarulhos	SP	50
+/*  Results:
+ sao paulo	SP	694
+ curitiba	PR	124
+ rio de janeiro	RJ	93
+ belo horizonte	MG	66
+ ribeirao preto	SP	52
+ guarulhos	SP	50
+ ibitinga	SP	49
+ santo andre	SP	45
+ campinas	SP	41
+ maringa	PR	40
+\*

@@ -12,8 +12,8 @@ had the highest growth ratio at 2.07, followed by garden_tools at 1.96
 and fashion_bags_accessories at 1.82.
 
 Across all categories, item counts increased from 5,322 in October to
-8,665 in November: a growth ratio of approximately 1.63, or a 62.8%
-increase. Ten of the 18 qualifying categories grew faster than the
+8,665 in November: a growth ratio of approximately 1.63 .
+Ten of the 18 qualifying categories grew faster than the
 overall item count.
 
 The table counts item rows ordered in each purchase month, including

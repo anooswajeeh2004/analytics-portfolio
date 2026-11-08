@@ -31,7 +31,7 @@ from 25.9 MB to 20.2 MB.
 
 ## Part 1
 
-### Exercise a.1 — Matching Data Types
+### Exercise 1.a — Matching Data Types
 
 I copied orders_csv, converted the five timestamp columns to datetimes
 using an explicit format, and converted order_status to category.
@@ -40,7 +40,7 @@ using an explicit format, and converted order_status to category.
 - fixed.equals(smaller): True.
 - The original orders_csv was kept unchanged.
 
-### Exercise b.1 — Categorical Storage
+### Exercise 1.b — Categorical Storage
 
 | Measurement                                               |          Before |           After |
 | --------------------------------------------------------- | --------------: | --------------: |
@@ -51,7 +51,7 @@ Converting repeated state and city values to category reduced memory usage.
 However, customer_id did not get smaller because its values are unique:
 categorical storage keeps all unique IDs plus a code for each row.
 
-### Exercise c.1 — Nullable Integers
+### Exercise 1.c — Nullable Integers
 
 I converted the five remaining whole-number columns from float64 to Int64.
 
@@ -72,7 +72,9 @@ Category is useful for repeated labels, but it can increase memory usage
 for unique IDs. Int64 represents whole numbers while preserving missing
 values. Explicit datetime formats avoid ambiguous date interpretation.
 
-## Part 2### Merge Validation Error
+## Part 2
+
+### Merge Validation Error
 
 First line of the error from the intentional items-to-payments merge:
 
@@ -89,14 +91,14 @@ and indicator=True.
 
 | Merge indicator | Product count |
 | --------------- | ------------: |
-| both            |       [32328] |
-| left_only       |         [623] |
-| right_only      |           [0] |
+| both            |         32328 |
+| left_only       |           623 |
+| right_only      |             0 |
 
-The indicator distinguishes products with matching translations from
+Merge Error :The indicator distinguishes products with matching translations from
 products without a match.
 
-### Exercise a.2 — Payments to Orders
+### Exercise 2.a — Payments to Orders
 
 - Validation: many_to_one.
 - Payment rows before the merge: 103,886.
@@ -105,7 +107,7 @@ products without a match.
 Multiple payment records can belong to one order. Every payment record
 found a matching order, so no rows were lost or multiplied.
 
-### Exercise b.2 — Orders Without Payment Records
+### Exercise 2.b — Orders Without Payment Records
 
 I merged orders with payments using a left merge, one_to_many validation,
 and indicator=True.
@@ -119,7 +121,9 @@ Filtering for left_only identified one order:
 This order has no matching payment record in the dataset. Its delivered
 status does not establish why the payment record is missing.
 
-### Exercise c.2 — Missing Merge Keys
+The order without a payment found in exercise 2.b is the exact same order identified in exercise 4.a of B9."
+
+### Exercise 2.c — Missing Merge Keys
 
 The inner merge of the two small example tables returned both rows.
 The missing category matched the missing key in the right table and
@@ -149,7 +153,7 @@ For order 06d5cbe68295558fd6c48998db3ea397, the example calculation is:
 | 2             | 33.00 |      123.00 |         26.8 |
 | 3             | 51.00 |      123.00 |         41.5 |
 
-### Exercise a.3 — Items and Orders
+### Exercise 3.a — Items and Orders
 
 - Item rows belonging to orders with at least two items: 23,787.
 - Orders with at least two items: 9,803.
@@ -157,7 +161,7 @@ For order 06d5cbe68295558fd6c48998db3ea397, the example calculation is:
 These counts measure different things: individual item rows versus
 distinct orders.
 
-### Exercise b.3 — Comparing Totals
+### Exercise 3.b — Comparing Totals
 
 | Calculation                        |    Total (R$) |
 | ---------------------------------- | ------------: |
@@ -169,7 +173,7 @@ The item-price sum matches the order-level summary sum.
 Summing order_total across item rows overcounts because each order's
 total appears once for every item in that order.
 
-### Exercise c.3 — Tied Maximum Prices
+### Exercise 3.c — Tied Maximum Prices
 
 The inspected order, 1b15974a0141d54e36626dca3fdc731a, contains 20 items,
 each priced at R$100.00.

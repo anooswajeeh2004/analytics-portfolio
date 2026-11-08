@@ -24,21 +24,21 @@ Way 3 (by payment type): R$ 884657.4
 
 from way 1 to way 2
 
-| Step                                                 | Orders         | Amount (R$)         | Total so far (R$)     |
-| ---------------------------------------------------- | -------------- | ------------------- | --------------------- |
-| Way 1: the item prices                               | 6,452          | 854,686.33[cite: 8] | 854,686.33[cite: 8]   |
-| + the freight of those items[cite: 8]                | 6,452[cite: 8] | 148,622.14[cite: 8] | 1,003,308.47[cite: 8] |
-| + the payments of orders that have no items[cite: 8] | 60[cite: 8]    | 19,194.21[cite: 8]  | 1,022,502.68[cite: 8] |
-| + the small differences inside orders[cite: 8]       | 59[cite: 8]    | −77.36[cite: 8]     | 1,022,425.32[cite: 8] |
-| = Way 2: the payments[cite: 8]                       | 6,512[cite: 8] |                     | 1,022,425.32[cite: 8] |
+| Step                                        | Orders | Amount (R$) | Total so far (R$) |
+| ------------------------------------------- | ------ | ----------- | ----------------- |
+| Way 1: the item prices                      | 6,452  | 854,686.33  | 854,686.33        |
+| + the freight of those items                | 6,452  | 148,622.14  | 1,003,308.47      |
+| + the payments of orders that have no items | 60     | 19,194.21   | 1,022,502.68      |
+| + the small differences inside orders       | 59     | −77.36      | 1,022,425.32      |
+| = Way 2: the payments                       | 6,512  |             | 1,022,425.32      |
 
 from way 1 to way 3
 
-| Step                                              | Orders         | Amount (R$)         | Total so far (R$)   |
-| ------------------------------------------------- | -------------- | ------------------- | ------------------- |
-| Way 1: the item prices[cite: 8]                   | 6,452[cite: 8] | 854,686.33[cite: 8] | 854,686.33[cite: 8] |
-| + item prices that the join counts again[cite: 8] | 139[cite: 8]   | 29,971.07[cite: 8]  | 884,657.40[cite: 8] |
-| = Way 3[cite: 8]                                  |                |                     | 884,657.40[cite: 8] |
+| Step                                     | Orders | Amount (R$) | Total so far (R$) |
+| ---------------------------------------- | ------ | ----------- | ----------------- |
+| Way 1: the item prices                   | 6,452  | 854,686.33  | 854,686.33        |
+| + item prices that the join counts again | 139    | 29,971.07   | 884,657.40        |
+| = Way 3                                  |        |             | 884,657.40        |
 
 ## Part 5
 
