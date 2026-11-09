@@ -12,8 +12,8 @@
 ### Non-removing choices:
 
 1. **Missing values (Part 1):** Left missing because pandas safely skips `NaN` values in aggregations.
-2. **Product categories with no English name (Part 1):** Labeled as `unknown` to keep them active in group operations.
+2. **Product categories with no English name (Part 1):** Given their English names using `EXTRA_TRANSLATIONS`, while categories with no name at all get `unknown`.
 3. **Items that look like copies (Part 2):** Kept as distinct units since multiple quantities of the same product can exist in an order.
 4. **Vouchers of 0.00 (exercise 3.d):** Kept as possible promotional or discount vouchers.
-5. **Payments of orders with no items (exercise 3.e):** Kept as orphaned transactions but excluded from item-level analysis.
-6. **Canceled orders with a delivery date (exercise 3.f):** Kept as flagged anomalies as orders might have been processed before cancellation notices.
+5. **Payments of orders with no items (exercise 3.e):** Kept as orphaned transactions.
+6. **Canceled orders with a delivery date (exercise 3.f):** Kept as they are as orders might have been processed before cancellation notices.

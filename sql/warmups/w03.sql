@@ -17,6 +17,5 @@ SP	1849
 3	SC	190
 4	RJ	171
 5	RS	129 
-\*
-
+*/
 -- (States with 50 or more sellers, ordered by count descending)

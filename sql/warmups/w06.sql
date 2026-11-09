@@ -27,4 +27,4 @@ LIMIT
  santo andre	SP	45
  campinas	SP	41
  maringa	PR	40
-\*
+*/
