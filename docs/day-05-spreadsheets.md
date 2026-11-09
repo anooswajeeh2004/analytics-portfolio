@@ -38,7 +38,7 @@ Extracted August 2018 orders, items, and payments from the database using Python
 - **Spreadsheet Numbers & Differences:**
   - **Way 1:** Spreadsheet = 854,686.33 | SQL (Day 4) = 854,686.33 | Difference = 0
   - **Way 2:** Spreadsheet = 1,022,425.32 | SQL (Day 4) = 1,022,425.32 | Difference = 0
-  - **My revenue:** Spreadsheet = 996,973.51 | SQL (Day 4) = 996,973.51 | Difference = 0
+  - **My revenue:** Spreadsheet = 848,860.10 | SQL (Day 4) = 848,860.10 | Difference = 0
 
 - **Formulas Used:**
   - **B2 (Way 1):**
@@ -46,7 +46,7 @@ Extracted August 2018 orders, items, and payments from the database using Python
   - **B3 (Way 2):**
     `=SUMIFS(payments!$D:$D, payments!$F:$F, ">="&Inputs!$B$2, payments!$F:$F, "<"&Inputs!$B$3)`
   - **B4 (My revenue):**
-    `=SUMIFS(items!$G:$G, items!$F:$F, ">="&Inputs!$B$2, items!$F:$F, "<"&Inputs!$B$3, items!$E:$E, "<>"&Inputs!$B$4, items!$E:$E, "<>"&Inputs!$B$5)`
+    `=SUMIFS(items!$C:$C, items!$F:$F, ">="&Inputs!$B$2, items!$F:$F, "<"&Inputs!$B$3, items!$E:$E, "<>"&Inputs!$B$4, items!$E:$E, "<>"&Inputs!$B$5)`
 
 - **Revenue Sheet Screenshot:**
   ![Revenue Sheet Validation](day-05-revenue.png)
@@ -54,15 +54,15 @@ Extracted August 2018 orders, items, and payments from the database using Python
 ## Part 4 — A what-if model
 
 - **Scenario Results Summary:**
-  - **Today (Base):** Customers Pay = $R 996,973.51 | Change = $R 0.00
-  - **Fee up 10%:** Customers Pay = $R 1,001,667.00 | Change = +$R 4,693.49
-  - **Fee up 20%:** Customers Pay = $R 985,532.34 | Change = -$R 11,441.20
-  - **Fee down 10%:** Customers Pay = $R 1,001,805.41 | Change = +$R 4,831.90
-  - **Free delivery:** Customers Pay = $R 933,746.11 | Change = -$R 63,227.40
+  - **Today (Base):** Customers Pay = R$ 996,973.51 | Change = R$ 0.00
+  - **Fee up 10%:** Customers Pay = R$ 1,001,667.00 | Change = +R$ 4,693.49
+  - **Fee up 20%:** Customers Pay = R$ 985,532.34 | Change = -R$ 11,441.20
+  - **Fee down 10%:** Customers Pay = R$ 1,001,805.41 | Change = +R$ 4,831.90
+  - **Free delivery:** Customers Pay = R$ 933,746.11 | Change = -R$ 63,227.40
 
 - **Model Insights:**
-  - **Most Revenue:** The **`Fee down 10%`** scenario brings in the highest revenue ($R 1,001,805.41), as lower delivery fees stimulate a 2% increase in order volume, outperforming the base model.
-  - **Least Revenue:** The **`Free delivery`** scenario brings in the lowest revenue ($R 933,746.11), because eliminating delivery fees entirely causes a major revenue drop that the 10% increase in orders cannot recover.
+  - **Most Revenue:** The **`Fee down 10%`** scenario brings in the highest revenue (R$ 1,001,805.41), as lower delivery fees stimulate a 2% increase in order volume, outperforming the base model.
+  - **Least Revenue:** The **`Free delivery`** scenario brings in the lowest revenue (R$ 933,746.11), because eliminating delivery fees entirely causes a major revenue drop that the 10% increase in orders cannot recover.
 
 - **Two Model Limitations:**
   1. **Excludes Operational Logistics Costs:** The model only analyzes gross revenue paid by customers, ignoring the actual delivery costs paid to shipping providers.

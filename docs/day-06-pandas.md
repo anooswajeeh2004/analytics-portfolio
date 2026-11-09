@@ -95,9 +95,6 @@ and indicator=True.
 | left_only       |           623 |
 | right_only      |             0 |
 
-Merge Error :The indicator distinguishes products with matching translations from
-products without a match.
-
 ### Exercise 2.a — Payments to Orders
 
 - Validation: many_to_one.
@@ -121,7 +118,7 @@ Filtering for left_only identified one order:
 This order has no matching payment record in the dataset. Its delivered
 status does not establish why the payment record is missing.
 
-The order without a payment found in exercise 2.b is the exact same order identified in exercise 4.a of B9."
+The order without a payment found in exercise 2.b is the exact same order identified in exercise 4.a of B9.
 
 ### Exercise 2.c — Missing Merge Keys
 

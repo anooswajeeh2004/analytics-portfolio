@@ -22,6 +22,9 @@ This document provides a comprehensive dictionary of all tables, columns, data t
 | `order_delivered_customer_date` | timestamp | 2,965 | Actual delivery timestamp to the customer.                |
 | `order_estimated_delivery_date` | timestamp | 0     | Estimated delivery date at purchase time.                 |
 
+- **Date:** All times are São Paulo time, with your proof: 666 orders from 03:00 to 06:00, and 4,700 from 06:00 to 09:00.
+- **order_estimated_delivery_date:** order_estimated_delivery_date is a date. Compare it only with dates.
+
 ---
 
 ## 2. customers
@@ -64,7 +67,7 @@ This document provides a comprehensive dictionary of all tables, columns, data t
 
 - **Grain:** One row per payment transaction/installment for an order.
 - **Key:** Composite Primary Key (`order_id`, `payment_sequential`).
-- **Total Rows:** 103,881
+- **Total Rows:** 103,886
 - **Links:** Links to `orders` (`order_id`).
 
 | Column Name            | Data Type | Nulls | Description & Notes                                                             |
@@ -74,6 +77,8 @@ This document provides a comprehensive dictionary of all tables, columns, data t
 | `payment_type`         | text      | 0     | Method of payment (credit_card, boleto, voucher, debit_card).                   |
 | `payment_installments` | integer   | 0     | Number of installments chosen for the payment.                                  |
 | `payment_value`        | float     | 0     | Monetary value of the payment transaction.                                      |
+
+- **payment_value:** payment_value includes the item prices and the freight. Some canceled orders have payments but no items. Vouchers are a way to pay, and they do not change price.
 
 ---
 
@@ -133,7 +138,7 @@ This document provides a comprehensive dictionary of all tables, columns, data t
 
 ---
 
-## 8. product_category_name_translation
+## 8. category_translation
 
 - **Grain:** One row per Portuguese-to-English category translation pair.
 - **Key:** `product_category_name` (71 unique values, Primary Key).
