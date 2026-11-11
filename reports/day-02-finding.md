@@ -8,7 +8,8 @@ What is the true late delivery rate for Olist orders, and how do timestamp preci
 
 The standard date-truncated late delivery rate is **6.77%** when comparing calendar dates (`order_delivered_customer_date::date > order_estimated_delivery_date::date`).
 
-Using exact timestamp comparison without an `ELSE 0.0` clause in the `CASE` statement increases the reported late rate to **8.11%** because SQL `AVG()` ignores `NULL` values, altering the denominator. Adding `ELSE 0.0` correctly accounts for all rows, yielding **7.87%**.
+"8.11% and 7.87% both use the timestamp test. 8.11% has no `ELSE`, so `AVG` skips the orders that never arrived. 7.87% has `ELSE 0.0`, so it counts the orders that never arrived as not late. Neither is the course's definition: that is 6.77%, with the date test.
+"
 
 ## How sure I am
 

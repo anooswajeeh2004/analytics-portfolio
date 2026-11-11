@@ -4,7 +4,7 @@ Does the spreadsheet give the same August 2018 revenue as SQL? And what happens 
 
 ## The answer
 
-Our custom revenue definition for August 2018 is R$996,973.51. Yes, the spreadsheet and SQL agree to the cent for the standard revenue calculations (Way 1 and Way 2 both showed exactly 0 difference).
+Our custom revenue definition for August 2018 is R$848,860.10. Yes, the spreadsheet and SQL agree to the cent for the standard revenue calculations (Way 1 and Way 2 both showed exactly 0 difference).
 
 If the delivery fee changes, here is the scenario breakdown:
 
