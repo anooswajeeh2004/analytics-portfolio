@@ -1,13 +1,13 @@
-| Rule                                              | Table                 | Action  | Why                                                                                                              |
-| ------------------------------------------------- | --------------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| carrier date before approval date                 | orders                | flagged | Chronological timeline error makes it impossible to know the exact wrong date, so we keep the order and flag it. |
-| delivery date before carrier date                 | orders                | flagged | Impossible sequence of delivery steps, so we flag the order to exclude it from time-gap calculations.            |
-| shipping deadline more than a year after purchase | order_items           | changed | Unrealistic shipping deadlines over a year are set to missing.                                                   |
-| no payment type and no money                      | order_payments        | removed | Incomplete payment records with zero value are not actual payments and get removed.                              |
-| 0 installments is impossible                      | order_payments        | changed | A payment must have at least 1 installment, so zero values are turned into missing.                              |
-| a weight of 0 g is impossible                     | products              | changed | Physical items must have weight, so 0 g entries are made missing.                                                |
-| city spelling                                     | sellers and customers | changed | Standardizes diverse spelling variations and typos into a single uniform city name.                              |
-| not a city name                                   | sellers and customers | changed | Non-city entries like zip codes, emails, or state-only strings are masked as missing.                            |
+| Rule                                              | Table                 | Rows                          | Action  | Why                                                                                                              |
+| :------------------------------------------------ | :-------------------- | :---------------------------- | :------ | :--------------------------------------------------------------------------------------------------------------- |
+| carrier date before approval date                 | orders                | 1,359                         | flagged | Chronological timeline error makes it impossible to know the exact wrong date, so we keep the order and flag it. |
+| delivery date before carrier date                 | orders                | 23                            | flagged | Impossible sequence of delivery steps, so we flag the order to exclude it from time-gap calculations.            |
+| shipping deadline more than a year after purchase | order_items           | 4                             | changed | Unrealistic shipping deadlines over a year are set to missing.                                                   |
+| no payment type and no money                      | order_payments        | 3                             | removed | Incomplete payment records with zero value are not actual payments and get removed.                              |
+| 0 installments is impossible                      | order_payments        | 2                             | changed | A payment must have at least 1 installment, so zero values are turned into missing.                              |
+| a weight of 0 g is impossible                     | products              | 4                             | changed | Physical items must have weight, so 0 g entries are made missing.                                                |
+| city spelling                                     | sellers and customers | 39 (sellers), 226 (customers) | changed | Standardizes diverse spelling variations and typos into a single uniform city name.                              |
+| not a city name                                   | sellers and customers | 7 (sellers), 0 (customers)    | changed | Non-city entries like zip codes, emails, or state-only strings are masked as missing.                            |
 
 ### Non-removing choices:
 
