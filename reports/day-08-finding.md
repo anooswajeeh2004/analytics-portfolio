@@ -4,7 +4,7 @@ What does the cleaning pipeline change, and can we trust the clean tables?
 
 ## The answer
 
-The cleaning pipeline removed 3 invalid payment rows, changed 276 rows across items, payments, products, sellers, and customers, and flagged 1,382 orders with chronological timeline anomalies without dropping them.
+The cleaning pipeline removed 3 invalid payment rows, changed 282 rows across items, payments, products, sellers, and customers, and flagged 1,382 orders with chronological timeline anomalies without dropping them.
 
 | Table          | Action  | Rows  | Rule                                              |
 | -------------- | ------- | ----- | ------------------------------------------------- |

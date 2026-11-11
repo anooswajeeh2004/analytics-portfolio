@@ -106,7 +106,7 @@ This document provides a comprehensive dictionary of all tables, columns, data t
 - **Grain:** One row per unique product catalog item.
 - **Key:** `product_id` (32,951 unique values, Primary Key).
 - **Total Rows:** 32,951
-- **Links:** Links to `order_items` and `product_category_name_translation`.
+- **Links:** Links to `order_items` and `category_translation`.
 
 | Column Name                  | Data Type | Nulls | Description & Notes                                      |
 | :--------------------------- | :-------- | :---- | :------------------------------------------------------- |

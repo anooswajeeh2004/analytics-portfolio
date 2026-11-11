@@ -126,7 +126,7 @@ def clean_payments(payments):
         [
             log_rows(
                 "order_payments",
-                payments[~no_type],
+                payments[no_type],
                 "payment_type",
                 "(row removed)",
                 "removed",

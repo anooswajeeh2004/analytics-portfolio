@@ -63,7 +63,7 @@
 - **3.b:** The 4 items with shipping deadlines exceeding 365 days from purchase were logged and their deadlines successfully made missing (`NaN`) using `.mask()`.
 - **3.c:** A total of 166 orders have carrier dates before purchase dates. Exactly 0 of them are outside `carrier_first`, meaning all of these timeline anomalies are fully captured by `carrier_first`.
 - **3.d:** Zero-value vouchers are possible (e.g., promotional or 100% discount vouchers); we keep them.
-- **3.e:** There are **775** orders with no items and **775** payment rows (totaling 162,591.95 in value). They represent orphaned transactions and are kept.
+- **3.e:** There are **775** orders with no items with **830** payment rows (totaling 162,591.95 in value). They represent orphaned transactions and are kept.
 - **3.f:** The 6 canceled orders with delivery dates are kept as they are as orders might have been processed before cancellation notices.
 
 ## Part 4
@@ -109,11 +109,4 @@ The rule I am least sure about is **"shipping deadline more than a year after pu
 
 ## Errors seen today and lessons learned
 
-1. **Error / Trap:** Attempting to use `dropna()` as a quick shortcut for dataset cleaning.
-   - **Lesson:** `dropna()` silently destroys data integrity by removing entire categories of orders, altering fundamental business metrics like cancellation rates.
-2. **Error / Trap:** Assuming look-alike item rows with duplicate product details are database errors.
-   - **Lesson:** Always verify primary keys first; items with identical parameters are distinct units sold within the same order.
-3. **Error / Trap:** Replacing impossible values (like 0 g weight) with calculated numbers like mean or zero.
-   - **Lesson:** Never fabricate values in a clean table. An impossible value must become missing (`NaN`) rather than a guess.
-4. **PostgreSQL Execution:** No errors were encountered in PostgreSQL today; queries executed smoothly and cleanly.
-5. **Data Analysis Insight:** Learned how to uncover and evaluate true underlying data free from inappropriate or misleading default values, ensuring data cleaning preserves business reality rather than distorting it.
+--None

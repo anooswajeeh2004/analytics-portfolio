@@ -63,13 +63,13 @@
 
 ### 1. Failures from Step 3 (Raw Payments Validation):
 
-| column               | check                                                    | failure_case | index  |
-| -------------------- | -------------------------------------------------------- | ------------ | ------ |
-| payment_type         | isin(['credit_card', 'boleto', 'voucher', 'debit_card']) | not_defined  | 1612   |
-| payment_type         | isin(['credit_card', 'boleto', 'voucher', 'debit_card']) | not_defined  | 2788   |
-| payment_type         | isin(['credit_card', 'boleto', 'voucher', 'debit_card']) | not_defined  | 58230  |
-| payment_installments | greater_than_or_equal_to(1)                              | 0            | 57221  |
-| payment_installments | greater_than_or_equal_to(1)                              | 0            | 100771 |
+| column               | check                                                    | failure_case | index |
+| -------------------- | -------------------------------------------------------- | ------------ | ----- |
+| payment_type         | isin(['credit_card', 'boleto', 'voucher', 'debit_card']) | not_defined  | 51280 |
+| payment_type         | isin(['credit_card', 'boleto', 'voucher', 'debit_card']) | not_defined  | 57411 |
+| payment_type         | isin(['credit_card', 'boleto', 'voucher', 'debit_card']) | not_defined  | 94427 |
+| payment_installments | greater_than_or_equal_to(1)                              | 0            | 46982 |
+| payment_installments | greater_than_or_equal_to(1)                              | 0            | 79014 |
 
 ### 2. Error from Step 5 (SchemaErrors Output):
 
@@ -79,7 +79,7 @@ Failure cases:
   - column: payment_type
     check: isin(['credit_card', 'boleto', 'voucher', 'debit_card'])
     failure_case: ['not_defined', 'not_defined', 'not_defined']
-    index: [1612, 2788, 58230]
+    index: [51280, 57411, 94427, 46982, 79014]
 ```
 
 3. The Three Schemas (Exercises 3.a, 3.b, 3.c):
