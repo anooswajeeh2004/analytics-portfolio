@@ -99,6 +99,20 @@ SCHEMAS = {
     "order_items": items_schema,
     "sellers": sellers_schema,
 }
+# day 9 - ex:4.a
+holidays_schema = pa.DataFrameSchema(
+    {
+        "date": pa.Column("datetime64[ns]", unique=True),
+        "name": pa.Column(str),
+    }
+)
 
+rates_schema = pa.DataFrameSchema(
+    {
+        "date": pa.Column("datetime64[ns]", unique=True),
+        "buy": pa.Column(float, pa.Check.in_range(2, 6)),
+        "sell": pa.Column(float, pa.Check.in_range(2, 6)),
+    }
+)
 
 # This file defines data validation schemas using the `pandera` library for cleaned tables like `orders` and `order_payments`. It enforces strict constraints on data types, allowed categorical values, uniqueness, and logical date sequencing, ensuring that any data corruption halts the pipeline execution before writing to the database.
